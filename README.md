@@ -8,6 +8,11 @@
 Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |  
 
 
+# d.ts 생성 
+```
+
+```
+
 # 사용방법
 ```
 new Toast({ items: [{ text: '한글임 <br/>asdfwef' }],  style: 'success', duration: 3, position: { vertical: 'top', horizontal: 'left' } })
