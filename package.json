@@ -1,6 +1,6 @@
 {
   "name": "dara-toast",
-  "version": "0.1.0",
+  "version": "0.1.5",
   "sideEffects": false,
   "description": "Dara Toast Message",
   "author": {
@@ -18,13 +18,7 @@
     "javascript"
   ],
   "main": "src/index.js",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    }
-  },
+  "types": "./dist/index.d.ts",
   "homepage": "https://github.com/darainfo/toast",
   "bugs": {
     "url": "https://github.com/darainfo/toast/issues",
@@ -95,7 +89,7 @@
     "build:tsc": "npx tsc --emitDeclarationOnly",
     "build:js": "node build.js",
     "build:dev": "webpack --config webpack.dev.js",
-    "build:prod": "webpack --config webpack.prod.js",
+    "build:prod": "webpack --config webpack.prod.js && webpack --env=mode=deploy --config webpack.dev.js",
     "dts:gen": "npx -p typescript tsc src/index.js --declaration --allowJs --emitDeclarationOnly --outDir dist",
     "test": "jest",
     "start": "webpack-dev-server --open --config ./webpack.dev.server.js",

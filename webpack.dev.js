@@ -3,15 +3,17 @@ const common = require('./webpack.common.js');
 
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-module.exports = merge(common, {
-  mode: 'development',
-  devtool: 'source-map',
-  output: {
-    filename: 'dara.toast.js',
-  },
-  plugins: [
-    new BundleAnalyzerPlugin(),
-  ]
+module.exports = (env) => {
+  return merge(common, {
+    mode: 'development',
+    devtool: 'source-map',
+    output: {
+      filename: 'dara.toast.js',
+    },
+    plugins: [
+      env.mode !== 'deploy' ? new BundleAnalyzerPlugin() : '',
+    ]
+  });
 
 
-});
+}
