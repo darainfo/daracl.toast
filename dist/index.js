@@ -1,0 +1,138 @@
+// src/index.js
+var toastIdx = 0;
+var defaultToastItem = {
+  title: "",
+  text: "",
+  enableCloseButton: true,
+  style: "success",
+  textColor: "#000000",
+  enableProgress: true
+  //  프로그래스 바 사용여부.
+};
+var defaultOptions = {
+  duration: 3,
+  width: "",
+  position: {
+    // toast 위치
+    vertical: "top",
+    horizontal: "right"
+    // left, center, right
+  },
+  enableCloseButton: true,
+  style: "success",
+  textColor: "#000000",
+  enableProgress: true,
+  items: "",
+  keepInstance: false
+  // show 가 끝나도 toast 객체를 유지. toast 객체 하나 생성해서 계속 사용할 경우 사용  
+};
+function toastHiddenElement() {
+  if (document.getElementById("daraToastHidden") == null) {
+    document.querySelector("body")?.insertAdjacentHTML("beforeend", `<div id="daraToastHidden" class="dara-toast-hidden"></div>`);
+  }
+  return document.getElementById("daraToastHidden");
+}
+var Toast = class {
+  constructor(options) {
+    this.options = Object.assign({}, defaultOptions, options);
+    toastIdx += 1;
+    this.viewItemCount = 0;
+    const position = this.options.position;
+    const toastWrapperElement = document.createElement("div");
+    toastWrapperElement.className = `dara-toast-wrapper ${position.vertical} ${position.horizontal} dt-${toastIdx}`;
+    toastWrapperElement.style = `width:${this.options.width};`;
+    toastHiddenElement().appendChild(toastWrapperElement);
+    this.toastWrapperElement = toastWrapperElement;
+    this.show(this.options.items);
+  }
+  /**
+   * add toast item
+   * @param {*} item 
+   */
+  addItem(item) {
+    const enableHeader = item.title ? true : false;
+    const toast = document.createElement("div");
+    toast.className = `dara-toast ${this.options.style} ${enableHeader ? `header-mode` : ""}`;
+    this.viewItemCount += 1;
+    let toastHtml = `
+            ${enableHeader ? `<div class="toast-header" style="color:${item.textColor};" >${item.title}</div>` : ""}
+            <div class="toast-body">
+                <div class="toast-content" style="color:${item.textColor};" >${item.text}</div>
+            </div>
+            ${item.enableCloseButton ? '<span class="toast-close">\xD7</span>' : ""}
+            ${item.enableProgress ? `<div class="progress-bar" style="animation: progressAnimation ${item.duration}s;"></div>` : ""}
+        `;
+    toast.innerHTML = toastHtml;
+    if (this.options.position.vertical === "top") {
+      this.toastWrapperElement.insertAdjacentElement("afterbegin", toast);
+    } else {
+      this.toastWrapperElement.appendChild(toast);
+    }
+    toast.timer = setTimeout(() => this.hide(toast), item.duration * 1e3);
+    toast.querySelector(".toast-close").addEventListener("click", () => {
+      if (toast.timer)
+        clearTimeout(toast.timer);
+      this.hide(toast);
+    });
+  }
+  /**
+   * show toast message
+   * @param {*} viewItems 
+   * @returns 
+   */
+  show = (viewItems) => {
+    if (typeof viewItems === "undefined") {
+      return;
+    }
+    let items = [];
+    if (typeof viewItems === "string") {
+      items.push(viewItems);
+    } else if (Array.isArray(viewItems)) {
+      items = viewItems;
+    } else {
+      items.push(viewItems);
+    }
+    const enableCloseButton = this.options.enableCloseButton;
+    const enableProgress = this.options.enableProgress;
+    const duration = this.options.duration;
+    const textColor = this.options.textColor;
+    items.forEach((item) => {
+      let viewItem;
+      if (typeof item === "string") {
+        viewItem = { text: item };
+      } else {
+        viewItem = item;
+      }
+      viewItem.enableCloseButton = typeof viewItem.enableCloseButton === "undefined" ? enableCloseButton : viewItem.enableCloseButton;
+      viewItem.enableProgress = typeof viewItem.enableProgress === "undefined" ? enableProgress : viewItem.enableProgress;
+      viewItem.duration = typeof viewItem.duration === "undefined" ? duration : viewItem.duration;
+      viewItem.textColor = typeof viewItem.textColor === "undefined" ? textColor : viewItem.textColor;
+      this.addItem(Object.assign({}, defaultToastItem, viewItem));
+    });
+    return this;
+  };
+  /**
+   * toast hide
+   * @param {*} toast 
+   */
+  hide(toast) {
+    this.viewItemCount -= 1;
+    toast.classList.add("hide");
+    if (toast.timeoutId)
+      clearTimeout(toast.timeoutId);
+    setTimeout(() => toast.remove(), 500);
+    if (this.options.keepInstance === false && this.viewItemCount < 1) {
+      this.destroy();
+    }
+  }
+  /**
+   * toast destroy
+   */
+  destroy = () => {
+    this.toastWrapperElement.remove();
+  };
+};
+export {
+  Toast
+};
+//# sourceMappingURL=index.js.map

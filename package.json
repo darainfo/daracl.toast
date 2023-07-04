@@ -1,6 +1,6 @@
 {
   "name": "dara-toast",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "sideEffects": false,
   "description": "Dara Toast Message",
   "author": {
@@ -18,7 +18,13 @@
     "javascript"
   ],
   "main": "src/index.js",
-  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
   "homepage": "https://github.com/darainfo/toast",
   "bugs": {
     "url": "https://github.com/darainfo/toast/issues",
@@ -34,6 +40,7 @@
     "style"
   ],
   "dependencies": {
+    "esbuild": "^0.18.11",
     "typescript": "^5.1.6"
   },
   "prettier": {
@@ -83,11 +90,15 @@
     "webpack-node-externals": "^3.0.0"
   },
   "scripts": {
+    "prepack": "yarn build",
+    "build": "yarn build:prod && yarn scss-compile && yarn build:tsc && yarn build:js",
+    "build:tsc": "npx tsc --emitDeclarationOnly",
+    "build:js": "node build.js",
     "build:dev": "webpack --config webpack.dev.js",
     "build:prod": "webpack --config webpack.prod.js",
     "dts:gen": "npx -p typescript tsc src/index.js --declaration --allowJs --emitDeclarationOnly --outDir dist",
     "test": "jest",
     "start": "webpack-dev-server --open --config ./webpack.dev.server.js",
-    "scss-compile": "node-sass -r -w \"style/scss\" -o \"style/css\" --output-style compressed"
+    "scss-compile": "node-sass -r \"style\" -o \"dist\" --output-style compressed"
   }
 }

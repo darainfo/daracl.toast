@@ -1,28 +1,25 @@
 let toastIdx = 0;
 
 const defaultToastItem = {
-    title: ''
-    , text: ''
-    , enableCloseButton: true
-    , style: 'success'
-    , textColor: '#000000'
-    , textAlign: 'left'
-    , enableProgress: true
+    title: ''       // 제목
+    , text: ''      // 내용
+    , enableCloseButton: true       // 닫기 버튼 활성화여부
+    , style: 'success'                  //  백그라운드 색깔.  | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger'
+    , textColor: '#000000'      // 글자 색
+    , enableProgress: true  //  프로그래스 바 사용여부.
 };
 
 let defaultOptions = {
     duration: 3      // 유지 시간  초
     , width: ''    // toast width
-    , position: {
+    , position: {  // toast 위치
         vertical: 'top'    // top, middle, bottom
         , horizontal: 'right' // left, center, right
-    }          // toast 위치
-    , allowClose: false     // 닫기 버튼 여부
-    , style: 'success'    //  백그라운드 색깔.
-    , textColor: '#000000'  // 글자 색
+    }
     , enableCloseButton: true //  닫기 버튼 활성화 여부
+    , style: 'success'    //  백그라운드 색깔.  | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
+    , textColor: '#000000'  // 글자 색
     , enableProgress: true //  프로그래스 바 사용여부.
-    , align: 'left'                 // 글자 위치 정렬.
     , items: ''
     , keepInstance: false // show 가 끝나도 toast 객체를 유지. toast 객체 하나 생성해서 계속 사용할 경우 사용  
 }
@@ -65,9 +62,9 @@ export class Toast {
         this.viewItemCount += 1;
 
         let toastHtml = `
-            ${enableHeader ? `<div class="toast-header">${item.title}</div>` : ''}
+            ${enableHeader ? `<div class="toast-header" style="color:${item.textColor};" >${item.title}</div>` : ''}
             <div class="toast-body">
-                <div class="toast-content">${item.text}</div>
+                <div class="toast-content" style="color:${item.textColor};" >${item.text}</div>
             </div>
             ${item.enableCloseButton ? '<span class="toast-close">×</span>' : ''}
             ${item.enableProgress ? `<div class="progress-bar" style="animation: progressAnimation ${item.duration}s;"></div>` : ''}
@@ -114,6 +111,7 @@ export class Toast {
         const enableCloseButton = this.options.enableCloseButton;
         const enableProgress = this.options.enableProgress;
         const duration = this.options.duration;
+        const textColor = this.options.textColor;
         items.forEach(item => {
             let viewItem;
             if (typeof item === 'string') {
@@ -125,6 +123,7 @@ export class Toast {
             viewItem.enableCloseButton = typeof viewItem.enableCloseButton === 'undefined' ? enableCloseButton : viewItem.enableCloseButton;
             viewItem.enableProgress = typeof viewItem.enableProgress === 'undefined' ? enableProgress : viewItem.enableProgress;
             viewItem.duration = typeof viewItem.duration === 'undefined' ? duration : viewItem.duration;
+            viewItem.textColor = typeof viewItem.textColor === 'undefined' ? textColor : viewItem.textColor;
 
             this.addItem(Object.assign({}, defaultToastItem, viewItem));
         })
