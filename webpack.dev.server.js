@@ -32,13 +32,8 @@ module.exports = merge(common, {
     //new BundleAnalyzerPlugin()
     new HtmlWebpackPlugin({
       inject: true,
-      template: 'sample/index.html',
-      scripts: ['./dara.web.custom.js']
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        { from: 'custom', to: 'custom' }
-      ]
+      template: 'src/index.html',
     })
+
   ]
 });

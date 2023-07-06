@@ -42,6 +42,7 @@ var defaultOptions = {
     // left, center, right
   },
   enableCloseButton: true,
+  zIndex: 1e4,
   style: "success",
   textColor: "#000000",
   enableProgress: true,
@@ -63,10 +64,13 @@ var Toast = class {
     const position = this.options.position;
     const toastWrapperElement = document.createElement("div");
     toastWrapperElement.className = `dara-toast-wrapper ${position.vertical} ${position.horizontal} dt-${toastIdx}`;
-    toastWrapperElement.style = `width:${this.options.width};`;
+    toastWrapperElement.style = `width:${this.options.width};z-index:${this.options.zIndex};`;
     toastHiddenElement().appendChild(toastWrapperElement);
     this.toastWrapperElement = toastWrapperElement;
     this.show(this.options.items);
+  }
+  static setOptions(options) {
+    defaultOptions = Object.assign({}, defaultOptions, options);
   }
   /**
    * add toast item

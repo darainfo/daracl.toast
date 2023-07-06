@@ -2,6 +2,7 @@
  * Toast message 모듈
  */
 export class Toast {
+    static setOptions(options: any): void;
     constructor(options: any);
     options: any;
     viewItemCount: number;

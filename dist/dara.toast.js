@@ -80,6 +80,8 @@ let defaultOptions = {
 
   enableCloseButton: true //  닫기 버튼 활성화 여부
   ,
+  zIndex: 10000 // css z-index 
+  ,
   style: 'success' //  백그라운드 색깔.  | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
   ,
   textColor: '#000000' // 글자 색
@@ -108,10 +110,13 @@ class Toast {
     const position = this.options.position;
     const toastWrapperElement = document.createElement("div");
     toastWrapperElement.className = `dara-toast-wrapper ${position.vertical} ${position.horizontal} dt-${toastIdx}`;
-    toastWrapperElement.style = `width:${this.options.width};`;
+    toastWrapperElement.style = `width:${this.options.width};z-index:${this.options.zIndex};`;
     toastHiddenElement().appendChild(toastWrapperElement);
     this.toastWrapperElement = toastWrapperElement;
     this.show(this.options.items);
+  }
+  static setOptions(options) {
+    defaultOptions = Object.assign({}, defaultOptions, options);
   }
   /**
    * add toast item
