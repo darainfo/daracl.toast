@@ -30,9 +30,10 @@ module.exports = merge(common, {
   },
   plugins: [
     //new BundleAnalyzerPlugin()
-    new HtmlWebpackPlugin({
-      inject: true,
-      template: 'src/index.html',
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'dist', to: 'dist' }
+      ]
     })
 
   ]
