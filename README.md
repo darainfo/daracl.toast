@@ -1,5 +1,12 @@
 # toast.js
 
+Simple Toast Message
+
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/darainfo/dara-toast/blob/main/LICENSE)
+[![npm version](https://badge.fury.io/js/dara-toast.svg)](https://img.shields.io/npm/v/dara-toast)
+![npm](https://img.shields.io/npm/dt/dara-toast)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/dara-toast)](https://bundlephobia.com/package/dara-toast)
+
 
 ## Browser Support
 
