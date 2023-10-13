@@ -1,6 +1,6 @@
-# toast.js
+# Toast
 
-Simple Toast Message
+Simple toast message
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/darainfo/dara-toast/blob/main/LICENSE)
 [![npm version](https://badge.fury.io/js/dara-toast.svg)](https://img.shields.io/npm/v/dara-toast)
