@@ -1,35 +1,59 @@
 // src/index.js
 var toastIdx = 0;
+var styleClassMap = {
+  primary: "primary",
+  secondary: "secondary",
+  info: "info",
+  success: "success",
+  warning: "warning",
+  danger: "danger"
+};
 var defaultToastItem = {
   title: "",
+  // 제목
   text: "",
+  // 내용
   enableCloseButton: true,
+  // 닫기 버튼 활성화여부
   style: "success",
+  //  백그라운드 색깔.  | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger'
   textColor: "#000000",
+  // 글자 색
   enableProgress: true
   //  프로그래스 바 사용여부.
 };
 var defaultOptions = {
   duration: 3,
+  // 유지 시간  초
   width: "",
+  // toast width
   position: {
     // toast 위치
     vertical: "top",
+    // top, middle, bottom
     horizontal: "right"
     // left, center, right
   },
   enableCloseButton: true,
+  //  닫기 버튼 활성화 여부
   zIndex: 1e4,
+  // css z-index
   style: "success",
+  //  백그라운드 색깔.  | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
   textColor: "#000000",
-  enableProgress: true,
+  // 글자 색
+  enableProgress: false,
+  //  프로그래스 바 사용여부.
   items: "",
   keepInstance: false
-  // show 가 끝나도 toast 객체를 유지. toast 객체 하나 생성해서 계속 사용할 경우 사용  
+  // show 가 끝나도 toast 객체를 유지. toast 객체 하나 생성해서 계속 사용할 경우 사용
 };
 function toastHiddenElement() {
   if (document.getElementById("daraToastHidden") == null) {
-    document.querySelector("body")?.insertAdjacentHTML("beforeend", `<div id="daraToastHidden" class="dara-toast-hidden"></div>`);
+    document.querySelector("body")?.insertAdjacentHTML(
+      "beforeend",
+      `<div id="daraToastHidden" class="dara-toast-hidden"></div>`
+    );
   }
   return document.getElementById("daraToastHidden");
 }
@@ -51,12 +75,14 @@ var Toast = class {
   }
   /**
    * add toast item
-   * @param {*} item 
+   * @param {*} item
    */
   addItem(item) {
     const enableHeader = item.title ? true : false;
     const toast = document.createElement("div");
-    toast.className = `dara-toast ${this.options.style} ${enableHeader ? `header-mode` : ""}`;
+    const style = item.style ? item.style : this.options.style;
+    const styleClass = styleClassMap[style] ?? styleClassMap.success;
+    toast.className = `dara-toast ${styleClass} ${enableHeader ? `header-mode` : ""}`;
     this.viewItemCount += 1;
     let toastHtml = `
             ${enableHeader ? `<div class="toast-header" style="color:${item.textColor};" >${item.title}</div>` : ""}
@@ -81,8 +107,8 @@ var Toast = class {
   }
   /**
    * show toast message
-   * @param {*} viewItems 
-   * @returns 
+   * @param {*} viewItems
+   * @returns
    */
   show = (viewItems) => {
     if (typeof viewItems === "undefined") {
@@ -117,7 +143,7 @@ var Toast = class {
   };
   /**
    * toast hide
-   * @param {*} toast 
+   * @param {*} toast
    */
   hide(toast) {
     this.viewItemCount -= 1;
