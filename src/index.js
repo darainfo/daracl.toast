@@ -13,7 +13,7 @@ const defaultToastItem = {
   title: "", // 제목
   text: "", // 내용
   enableCloseButton: true, // 닫기 버튼 활성화여부
-  style: "success", //  백그라운드 색깔.  | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger'
+  //style: "success", //  백그라운드 색깔.  | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger'
   textColor: "#000000", // 글자 색
   enableProgress: true, //  프로그래스 바 사용여부.
 };
