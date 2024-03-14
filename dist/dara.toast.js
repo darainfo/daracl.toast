@@ -1,3 +1,8 @@
+/*!
+* dara-toast  v0.1.16
+* Copyright 2023-2024 darainfo and other contributors; 
+* Licensed MIT
+*/
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
@@ -80,9 +85,9 @@ let defaultOptions = {
   // toast width
   position: {
     // toast 위치
-    vertical: "top",
+    vertical: "middle",
     // top, middle, bottom
-    horizontal: "right" // left, center, right
+    horizontal: "center" // left, center, right
   },
 
   enableCloseButton: true,
@@ -110,7 +115,13 @@ function toastHiddenElement() {
  * Toast message 모듈
  */
 class Toast {
+  static VERSION = "0.1.16";
   constructor(options) {
+    if (typeof options === "string") {
+      options = {
+        items: options
+      };
+    }
     this.options = Object.assign({}, defaultOptions, options);
     toastIdx += 1;
     this.viewItemCount = 0;

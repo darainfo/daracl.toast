@@ -28,9 +28,9 @@ var defaultOptions = {
   // toast width
   position: {
     // toast 위치
-    vertical: "top",
+    vertical: "middle",
     // top, middle, bottom
-    horizontal: "right"
+    horizontal: "center"
     // left, center, right
   },
   enableCloseButton: true,
@@ -57,7 +57,11 @@ function toastHiddenElement() {
   return document.getElementById("daraToastHidden");
 }
 var Toast = class {
+  static VERSION = APP_VERSION;
   constructor(options) {
+    if (typeof options === "string") {
+      options = { items: options };
+    }
     this.options = Object.assign({}, defaultOptions, options);
     toastIdx += 1;
     this.viewItemCount = 0;

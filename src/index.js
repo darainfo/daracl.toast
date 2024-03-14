@@ -23,8 +23,8 @@ let defaultOptions = {
   width: "", // toast width
   position: {
     // toast 위치
-    vertical: "top", // top, middle, bottom
-    horizontal: "right", // left, center, right
+    vertical: "middle", // top, middle, bottom
+    horizontal: "center", // left, center, right
   },
   enableCloseButton: true, //  닫기 버튼 활성화 여부
   zIndex: 10000, // css z-index
@@ -52,7 +52,12 @@ function toastHiddenElement() {
  * Toast message 모듈
  */
 export class Toast {
+  static VERSION = APP_VERSION;
   constructor(options) {
+    if (typeof options === "string") {
+      options = { items: options };
+    }
+
     this.options = Object.assign({}, defaultOptions, options);
     toastIdx += 1;
 
