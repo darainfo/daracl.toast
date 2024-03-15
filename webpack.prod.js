@@ -41,11 +41,11 @@ module.exports = merge(common, {
     ],
   },
   output: {
-    filename: "dara.toast.min.js",
+    filename: common.output.filename.replace(/\.js$/, ".min.js"),
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "dara.toast.min.css",
+      filename: common.output.filename.replace(/\.js$/, ".min.css"),
     }),
     //, new BundleAnalyzerPlugin()
   ],
