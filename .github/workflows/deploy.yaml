@@ -1,0 +1,43 @@
+# github action name 
+name: Build and Auto Publish
+
+# master 브랜치에 push 되면 자동 patch update를 한다는 구현
+on:
+  push:
+    branches:
+      - main
+
+# 실제 실행 구현부
+jobs:
+  build_and_publish_js:
+    runs-on: ubuntu-latest
+    env:
+      NPM_DEPLOY_TOKEN: ${{ secrets.NPM_DEPLOY_TOKEN }}
+
+    steps:
+      # github action에서 NodeJS 세팅을 위한 actions/setup-node@v2 action을 사용
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      # yarn을 사용하기에 yarn을 global install
+      - name: Install dependencies
+        run: |
+          echo "Installing dependencies"
+          npm install -g yarn
+          yarn install
+
+      - name: Build
+        run: |
+          echo "Building Node.js project"
+          npm run build
+
+      - name: Publish to npm
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NPM_DEPLOY_TOKEN}" >> ~/.npmrc
+          echo "Publishing to npm"
+          npm publish
