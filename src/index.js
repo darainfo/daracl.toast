@@ -1,4 +1,4 @@
-let toastIdx = 0;
+let TOAST_IDX = 0;
 
 const styleClassMap = {
   primary: "primary",
@@ -10,42 +10,55 @@ const styleClassMap = {
 };
 
 const defaultToastItem = {
-  title: "", // 제목
-  text: "", // 내용
-  enableCloseButton: true, // 닫기 버튼 활성화여부
-  //style: "success", //  백그라운드 색깔.  | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger'
-  textColor: "#000000", // 글자 색
-  enableProgress: true, //  프로그래스 바 사용여부.
+  // 제목
+  title: "",
+  // 내용
+  text: "",
+  // 닫기 버튼 활성화여부
+  enableCloseButton: true,
+  //  백그라운드 색깔.  | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger'
+  //style: "success",
+  // 글자 색
+  textColor: "#000000",
+  //  프로그래스 바 사용여부.
+  enableProgress: true,
 };
 
 let defaultOptions = {
-  duration: 3, // 유지 시간  초
-  width: "", // toast width
+  // 유지 시간  초
+  duration: 3,
+  // toast width
+  width: "",
+
+  // toast 위치
   position: {
-    // toast 위치
-    vertical: "middle", // top, middle, bottom
-    horizontal: "center", // left, center, right
+    // top, middle, bottom
+    vertical: "middle",
+    // left, center, right
+    horizontal: "center",
   },
-  enableCloseButton: true, //  닫기 버튼 활성화 여부
-  zIndex: 10000, // css z-index
-  style: "success", //  백그라운드 색깔.  | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
-  textColor: "#000000", // 글자 색
-  enableProgress: false, //  프로그래스 바 사용여부.
+  //  닫기 버튼 활성화 여부
+  enableCloseButton: true,
+  // css z-index
+  zIndex: 10000,
+  //  백그라운드 색깔.  | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
+  style: "success",
+  // 글자 색
+  textColor: "#000000",
+  //  프로그래스 바 사용여부.
+  enableProgress: false,
+
   items: "",
-  keepInstance: false, // show 가 끝나도 toast 객체를 유지. toast 객체 하나 생성해서 계속 사용할 경우 사용
+  // show 가 끝나도 toast 객체를 유지. toast 객체 하나 생성해서 계속 사용할 경우 사용
+  keepInstance: false,
 };
 
 function toastHiddenElement() {
-  if (document.getElementById("daraToastHidden") == null) {
-    document
-      .querySelector("body")
-      ?.insertAdjacentHTML(
-        "beforeend",
-        `<div id="daraToastHidden" class="dara-toast-hidden"></div>`
-      );
+  if (document.getElementById("daraclToastHidden") == null) {
+    document.querySelector("body")?.insertAdjacentHTML("beforeend", `<div id="daraclToastHidden" class="daracl-toast-hidden"></div>`);
   }
 
-  return document.getElementById("daraToastHidden");
+  return document.getElementById("daraclToastHidden");
 }
 
 /**
@@ -59,14 +72,15 @@ export class Toast {
     }
 
     this.options = Object.assign({}, defaultOptions, options);
-    toastIdx += 1;
+    TOAST_IDX += 1;
 
     this.viewItemCount = 0;
     const position = this.options.position;
 
     const toastWrapperElement = document.createElement("div");
-    toastWrapperElement.className = `dara-toast-wrapper ${position.vertical} ${position.horizontal} dt-${toastIdx}`;
-    toastWrapperElement.style = `width:${this.options.width};z-index:${this.options.zIndex};`;
+    toastWrapperElement.className = `daracl-toast-wrapper ${position.vertical} ${position.horizontal} dt-${TOAST_IDX}`;
+    toastWrapperElement.style.width = this.options.width;
+    toastWrapperElement.style.zIndex = this.options.zIndex;
     toastHiddenElement().appendChild(toastWrapperElement);
     this.toastWrapperElement = toastWrapperElement;
     this.show(this.options.items);
@@ -86,30 +100,16 @@ export class Toast {
 
     const styleClass = styleClassMap[style] ?? styleClassMap.success;
 
-    toast.className = `dara-toast ${styleClass} ${
-      enableHeader ? `header-mode` : ""
-    }`;
+    toast.className = `daracl-toast ${styleClass} ${enableHeader ? `header-mode` : ""}`;
     this.viewItemCount += 1;
 
     let toastHtml = `
-            ${
-              enableHeader
-                ? `<div class="toast-header" style="color:${item.textColor};" >${item.title}</div>`
-                : ""
-            }
+            ${enableHeader ? `<div class="toast-header" style="color:${item.textColor};" >${item.title}</div>` : ""}
             <div class="toast-body">
-                <div class="toast-content" style="color:${item.textColor};" >${
-      item.text
-    }</div>
+                <div class="toast-content" style="color:${item.textColor};" >${item.text}</div>
             </div>
-            ${
-              item.enableCloseButton ? '<span class="toast-close">×</span>' : ""
-            }
-            ${
-              item.enableProgress
-                ? `<div class="progress-bar" style="animation: progressAnimation ${item.duration}s;"></div>`
-                : ""
-            }
+            ${item.enableCloseButton ? '<span class="toast-close">×</span>' : ""}
+            ${item.enableProgress ? `<div class="progress-bar" style="animation: progressAnimation ${item.duration}s;"></div>` : ""}
         `;
 
     toast.innerHTML = toastHtml;
@@ -161,20 +161,10 @@ export class Toast {
         viewItem = item;
       }
 
-      viewItem.enableCloseButton =
-        typeof viewItem.enableCloseButton === "undefined"
-          ? enableCloseButton
-          : viewItem.enableCloseButton;
-      viewItem.enableProgress =
-        typeof viewItem.enableProgress === "undefined"
-          ? enableProgress
-          : viewItem.enableProgress;
-      viewItem.duration =
-        typeof viewItem.duration === "undefined" ? duration : viewItem.duration;
-      viewItem.textColor =
-        typeof viewItem.textColor === "undefined"
-          ? textColor
-          : viewItem.textColor;
+      viewItem.enableCloseButton = typeof viewItem.enableCloseButton === "undefined" ? enableCloseButton : viewItem.enableCloseButton;
+      viewItem.enableProgress = typeof viewItem.enableProgress === "undefined" ? enableProgress : viewItem.enableProgress;
+      viewItem.duration = typeof viewItem.duration === "undefined" ? duration : viewItem.duration;
+      viewItem.textColor = typeof viewItem.textColor === "undefined" ? textColor : viewItem.textColor;
 
       this.addItem(Object.assign({}, defaultToastItem, viewItem));
     });
@@ -190,7 +180,7 @@ export class Toast {
     this.viewItemCount -= 1;
     toast.classList.add("hide");
     if (toast.timeoutId) clearTimeout(toast.timeoutId);
-    setTimeout(() => toast.remove(), 500);
+    setTimeout(() => this.toastWrapperElement.removeChild(toast), 500);
 
     if (this.options.keepInstance === false && this.viewItemCount < 1) {
       this.destroy();
@@ -201,6 +191,6 @@ export class Toast {
    * toast destroy
    */
   destroy = () => {
-    this.toastWrapperElement.remove();
+    toastHiddenElement().removeChild(this.toastWrapperElement);
   };
 }

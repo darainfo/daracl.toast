@@ -19,7 +19,7 @@ module.exports = merge(common, {
   devtool: "inline-source-map",
   output: {
     path: path.join(__dirname, "./public"),
-    filename: "dara.toast.js",
+    filename: "daracl.toast.js",
     libraryTarget: "umd",
   },
   devServer: {

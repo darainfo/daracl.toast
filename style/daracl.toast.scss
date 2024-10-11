@@ -1,13 +1,13 @@
 @import "_icon.scss";
 
-.dara-toast-hidden {
+.daracl-toast-hidden {
   visibility: visible;
   width: 0px;
   height: 0px;
   z-index: 1000;
 }
 
-.dara-toast-wrapper {
+.daracl-toast-wrapper {
   :root {
     --dark: #155724;
     --light: #ffffff;
@@ -61,7 +61,7 @@
     bottom: 10px;
   }
 
-  > .dara-toast {
+  > .daracl-toast {
     border-radius: 4px;
     margin-bottom: 5px;
     position: relative;

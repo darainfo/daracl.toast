@@ -2,17 +2,23 @@
 
 Simple toast message
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/darainfo/dara-toast/blob/main/LICENSE)
-[![npm version](https://badge.fury.io/js/dara-toast.svg)](https://img.shields.io/npm/v/dara-toast)
-![npm](https://img.shields.io/npm/dt/dara-toast)
-[![minzipped size](https://img.shields.io/bundlephobia/minzip/dara-toast)](https://bundlephobia.com/package/dara-toast)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/darainfo/daracl.toast/blob/main/LICENSE)
+[![npm version](https://badge.fury.io/js/daracl.toast.svg)](https://img.shields.io/npm/v/daracl.toast)
+![npm](https://img.shields.io/npm/dt/daracl.toast)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/daracl.toast)](https://bundlephobia.com/package/daracl.toast)
 
 
 ## Browser Support
 
-![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png)  
---- | --- | --- | --- | --- |  
-Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |  
+![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![Internet Explorer](https://raw.githubusercontent.com/alrra/browser-logos/main/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png)  
+--- | --- | --- | --- | --- |  --- | 
+Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |   ie 11 > |
+
+
+<p>
+<img src="https://github.com/darainfo/daracl.toast/blob/main/demo.gif?raw=true"/>
+</p>
+
 
 
 # build

@@ -19,9 +19,10 @@ process.env.TOP_BANNER = topBanner;
 
 module.exports = {
   entry: "./src/index.js",
+  target: ["web", "es5"],
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "dara.toast.js",
+    filename: "daracl.toast.js",
     libraryTarget: "umd",
   },
 
@@ -49,7 +50,14 @@ module.exports = {
         test: /\.js|\.jsx$$/u,
         exclude: /node_modules/u,
         include: path.resolve(__dirname, "src"),
-        use: ["babel-loader"],
+        use: {
+          loader: "babel-loader",
+          /*
+          options: {
+            cacheDirectory: false,
+          },
+          */
+        },
       },
       {
         test: /\.css$/,

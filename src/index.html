@@ -3,8 +3,9 @@
 
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-compatible" content="IE=edge">
   <title>Toast Notification - Darainfo</title>
-  <link rel="stylesheet" href="../dist/dara.toast.min.css">
+  <link rel="stylesheet" href="../dist/daracl.toast.min.css">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -47,19 +48,19 @@
   function addItem() {
     toastObj.show({ text: document.getElementById('toastMessage').value, style: 'info' })
   }
-
+  var toastObj;
   function toastView() {
-    new Toast({ items: [{ text: 'Top-left' }], style: 'primary', duration: 30000, enableProgress: true, position: { vertical: 'top', horizontal: 'left' } })
-    new Toast({ items: ['top-center', '한글임 한글임 한글임 세종대왕'], style: 'primary', enableProgress: true, duration: 30000, position: { vertical: 'top', horizontal: 'center' } })
-    var toastObj = new Toast({ items: [{ text: 'top-right', style: 'warning' }, { text: 'test', style: 'primary' }], keepInstance: true, style: 'secondary', enableProgress: true, duration: 30000, position: { vertical: 'top', horizontal: 'right' } })
+    new Toast({ items: [{ text: 'Top-left' }], style: 'primary', duration: 10, enableProgress: true, position: { vertical: 'top', horizontal: 'left' } })
+    new Toast({ items: ['top-center', '한글임 한글임 한글임 세종대왕'], style: 'primary', enableProgress: true, duration: 2, position: { vertical: 'top', horizontal: 'center' } })
+    toastObj = new Toast({ items: [{ text: 'top-right', style: 'warning' }, { text: 'test', style: 'primary' }], keepInstance: true, style: 'secondary', enableProgress: true, duration: 3, position: { vertical: 'top', horizontal: 'right' } })
 
-    new Toast({ items: ['middle-left', 'test'], style: 'warning', duration: 30000, position: { vertical: 'middle', horizontal: 'left' } })
-    new Toast({ items: [{ text: 'middle-center' }, 'test'], style: 'success', duration: 30000, position: { vertical: 'middle', horizontal: 'center' } })
-    new Toast({ items: ['middle-right', 'test'], style: 'info', duration: 30000, position: { vertical: 'middle', horizontal: 'right' } })
+    new Toast({ items: ['middle-left', 'test'], style: 'warning', duration: 3, position: { vertical: 'middle', horizontal: 'left' } })
+    new Toast({ items: [{ text: 'middle-center' }, 'test'], style: 'success', duration: 4, position: { vertical: 'middle', horizontal: 'center' } })
+    new Toast({ items: ['middle-right', 'test'], style: 'info', duration: 5, position: { vertical: 'middle', horizontal: 'right' } })
 
-    new Toast({ items: ['bottom-left', 'test'], style: 'danger', duration: 30000, position: { vertical: 'bottom', horizontal: 'left' } })
-    new Toast({ items: ['bottom-center', 'test'], style: 'success', duration: 30000, position: { vertical: 'bottom', horizontal: 'center' } })
-    new Toast({ items: [{ text: 'bottom-right', title: 'title', duration: 30000 }, '한글임한글임한글'], style: 'success', duration: 5000, position: { vertical: 'bottom', horizontal: 'right' } })
+    new Toast({ items: ['bottom-left', 'test'], style: 'danger', duration: 6, position: { vertical: 'bottom', horizontal: 'left' } })
+    new Toast({ items: ['bottom-center', 'test'], style: 'success', duration: 7, position: { vertical: 'bottom', horizontal: 'center' } })
+    new Toast({ items: [{ text: 'bottom-right', title: 'title', duration: 8 }, '한글임한글임한글'], style: 'success', duration: 2, position: { vertical: 'bottom', horizontal: 'right' } })
 
   }
 
