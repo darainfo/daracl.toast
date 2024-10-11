@@ -36,12 +36,6 @@ jobs:
           echo "Building Node.js project"
           npm run build
 
-      - name: Publish to npm
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${NPM_DEPLOY_TOKEN}" >> ~/.npmrc
-          echo "Publishing to npm"
-          npm publish
-
       - name: Create ZIP file
         run: zip -r dist.zip ./dist
 
@@ -68,3 +62,9 @@ jobs:
           asset_path: ./dist.zip # 압축된 파일의 경로
           asset_name: dist.zip # 업로드할 파일 이름
           asset_content_type: application/zip # 파일의 콘텐츠 타입
+
+      - name: Publish to npm
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NPM_DEPLOY_TOKEN}" >> ~/.npmrc
+          echo "Publishing to npm"
+          npm publish
