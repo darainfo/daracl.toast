@@ -24,6 +24,11 @@ module.exports = {
     path: path.join(__dirname, "dist"),
     filename: "daracl.toast.js",
     libraryTarget: "umd",
+    library: {
+      name: ["Daracl", "toast"],
+      type: "var",
+      export: "default",
+    },
   },
 
   resolve: {

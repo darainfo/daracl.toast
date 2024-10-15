@@ -50,17 +50,17 @@
   }
   var toastObj;
   function toastView() {
-    new Toast({ items: [{ text: 'Top-left' }], style: 'primary', duration: 10, enableProgress: true, position: { vertical: 'top', horizontal: 'left' } })
-    new Toast({ items: ['top-center', '한글임 한글임 한글임 세종대왕'], style: 'primary', enableProgress: true, duration: 2, position: { vertical: 'top', horizontal: 'center' } })
-    toastObj = new Toast({ items: [{ text: 'top-right', style: 'warning' }, { text: 'test', style: 'primary' }], keepInstance: true, style: 'secondary', enableProgress: true, duration: 3, position: { vertical: 'top', horizontal: 'right' } })
+    Daracl.toast.create({ items: [{ text: 'Top-left' }], style: 'primary', duration: 10, enableProgress: true, position: { vertical: 'top', horizontal: 'left' } })
+    Daracl.toast.create({ items: ['top-center', '한글임 한글임 한글임 세종대왕'], style: 'primary', enableProgress: true, duration: 2, position: { vertical: 'top', horizontal: 'center' } })
+    toastObj = Daracl.toast.create({ items: [{ text: 'top-right', style: 'warning' }, { text: 'test', style: 'primary' }], keepInstance: true, style: 'secondary', enableProgress: true, duration: 3, position: { vertical: 'top', horizontal: 'right' } })
 
-    new Toast({ items: ['middle-left', 'test'], style: 'warning', duration: 3, position: { vertical: 'middle', horizontal: 'left' } })
-    new Toast({ items: [{ text: 'middle-center' }, 'test'], style: 'success', duration: 4, position: { vertical: 'middle', horizontal: 'center' } })
-    new Toast({ items: ['middle-right', 'test'], style: 'info', duration: 5, position: { vertical: 'middle', horizontal: 'right' } })
+    Daracl.toast.create({ items: ['middle-left', 'test'], style: 'warning', duration: 3, position: { vertical: 'middle', horizontal: 'left' } })
+    Daracl.toast.create({ items: [{ text: 'middle-center' }, 'test'], style: 'success', duration: 4, position: { vertical: 'middle', horizontal: 'center' } })
+    Daracl.toast.create({ items: ['middle-right', 'test'], style: 'info', duration: 5, position: { vertical: 'middle', horizontal: 'right' } })
 
-    new Toast({ items: ['bottom-left', 'test'], style: 'danger', duration: 6, position: { vertical: 'bottom', horizontal: 'left' } })
-    new Toast({ items: ['bottom-center', 'test'], style: 'success', duration: 7, position: { vertical: 'bottom', horizontal: 'center' } })
-    new Toast({ items: [{ text: 'bottom-right', title: 'title', duration: 8 }, '한글임한글임한글'], style: 'success', duration: 2, position: { vertical: 'bottom', horizontal: 'right' } })
+    Daracl.toast.create({ items: ['bottom-left', 'test'], style: 'danger', duration: 6, position: { vertical: 'bottom', horizontal: 'left' } })
+    Daracl.toast.create({ items: ['bottom-center', 'test'], style: 'success', duration: 7, position: { vertical: 'bottom', horizontal: 'center' } })
+    Daracl.toast.create({ items: [{ text: 'bottom-right', title: 'title', duration: 8 }, '한글임한글임한글'], style: 'success', duration: 2, position: { vertical: 'bottom', horizontal: 'right' } })
 
   }
 

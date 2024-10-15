@@ -64,7 +64,7 @@ function toastHiddenElement() {
 /**
  * Toast message 모듈
  */
-export class Toast {
+export default class Toast {
   static VERSION = APP_VERSION;
   constructor(options) {
     if (typeof options === "string") {
@@ -84,6 +84,10 @@ export class Toast {
     toastHiddenElement().appendChild(toastWrapperElement);
     this.toastWrapperElement = toastWrapperElement;
     this.show(this.options.items);
+  }
+
+  static create(options) {
+    return new Toast(options);
   }
 
   static setOptions(options) {
