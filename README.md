@@ -2,10 +2,10 @@
 
 Simple toast message
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/darainfo/daracl.toast/blob/main/LICENSE)
-[![npm version](https://badge.fury.io/js/daracl.toast.svg)](https://img.shields.io/npm/v/daracl.toast)
-![npm](https://img.shields.io/npm/dt/daracl.toast)
-[![minzipped size](https://img.shields.io/bundlephobia/minzip/daracl.toast)](https://bundlephobia.com/package/daracl.toast)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/darainfo/@daracl%2Ftoast/blob/main/LICENSE)
+[![npm version](https://badge.fury.io/js/@daracl%2Ftoast.svg)](https://img.shields.io/npm/v/@daracl%2Ftoast)
+[![npm](https://img.shields.io/npm/dt/@daracl%2Ftoast)](https://github.com/darainfo/daracl.toast/releases)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/@daracl%2Ftoast)](https://bundlephobia.com/package/@daracl%2Ftoast)
 
 
 ## Browser Support

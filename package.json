@@ -1,6 +1,6 @@
 {
   "name": "@daracl/toast",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "sideEffects": false,
   "description": "Daracl Toast Message",
   "author": {
@@ -29,9 +29,13 @@
     "type": "git",
     "url": "https://github.com/darainfo/daracl.toast.git"
   },
+  "exports": {
+    ".": "./dist/index.js",
+    "./dist/": "./dist/",
+    "./style/": "./style/"
+  },
   "files": [
     "dist",
-    "src",
     "style"
   ],
   "dependencies": {
