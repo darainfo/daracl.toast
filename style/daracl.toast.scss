@@ -1,4 +1,4 @@
-@import "_icon.scss";
+@use "_icon.scss";
 
 .daracl-toast-hidden {
   visibility: visible;
@@ -96,42 +96,42 @@
       background-color: #cce5ff;
       border-color: #b8daff;
       color: var(--light);
-      background-image: icon(primary, "2496ed");
+      background-image: icon.icon(primary, "2496ed");
     }
 
     &.secondary {
       background-color: #e2e3e5;
       border-color: #d6d8db;
       color: var(--light);
-      background-image: icon(secondary, "2496ed");
+      background-image: icon.icon(secondary, "2496ed");
     }
 
     &.info {
       background-color: #d1ecf1;
       border-color: #bee5eb;
       color: var(--light);
-      background-image: icon(info, "2496ed");
+      background-image: icon.icon(info, "2496ed");
     }
 
     &.success {
       background-color: #d4edda;
       border-color: #c3e6cb;
       color: var(--light);
-      background-image: icon(success, "493fff");
+      background-image: icon.icon(success, "493fff");
     }
 
     &.warning {
       background-color: #fff3cd;
       border-color: #ffeeba;
       color: var(--dark);
-      background-image: icon(warning, "e18787");
+      background-image: icon.icon(warning, "e18787");
     }
 
     &.danger {
       background-color: #f8d7da;
       border-color: #f5c6cb;
       color: var(--light);
-      background-image: icon(danger, "ef2e40");
+      background-image: icon.icon(danger, "ef2e40");
     }
 
     &.hide {

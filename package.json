@@ -1,6 +1,6 @@
 {
   "name": "@daracl/toast",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "sideEffects": false,
   "description": "Daracl Toast Message",
   "author": {
