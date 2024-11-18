@@ -1,11 +1,16 @@
-const esbuild = require('esbuild');
+const esbuild = require("esbuild");
+
+const packageJson = require("./package.json");
 
 const baseConfig = {
-  entryPoints: ['src/index.js'],
+  entryPoints: ["src/index.js"],
   outdir: "dist",
   bundle: true,
   sourcemap: true,
-}
+  define: {
+    APP_VERSION: `"${packageJson.version}"`, // 환경 변수 설정
+  },
+};
 
 Promise.all([
   // 한번은 cjs
@@ -23,6 +28,6 @@ Promise.all([
     format: "esm",
   }),
 ]).catch(() => {
-  console.log('Build failed');
+  console.log("Build failed");
   process.exit(1);
 });
