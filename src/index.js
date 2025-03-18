@@ -51,6 +51,9 @@ let defaultOptions = {
   items: "",
   // show 가 끝나도 toast 객체를 유지. toast 객체 하나 생성해서 계속 사용할 경우 사용
   keepInstance: false,
+
+  // hide callback
+  hideCallback: false,
 };
 
 function toastHiddenElement() {
@@ -99,12 +102,12 @@ export default class Toast {
    */
   addItem(item) {
     const enableHeader = item.title ? true : false;
-    const toast = document.createElement("div");
+    const toastElement = document.createElement("div");
     const style = item.style ? item.style : this.options.style;
 
     const styleClass = styleClassMap[style] ?? styleClassMap.success;
 
-    toast.className = `daracl-toast ${styleClass} ${enableHeader ? `header-mode` : ""}`;
+    toastElement.className = `daracl-toast ${styleClass} ${enableHeader ? `header-mode` : ""}`;
     this.viewItemCount += 1;
 
     let toastHtml = `
@@ -116,19 +119,19 @@ export default class Toast {
             ${item.enableProgress ? `<div class="progress-bar" style="animation: progressAnimation ${item.duration}s;"></div>` : ""}
         `;
 
-    toast.innerHTML = toastHtml;
+    toastElement.innerHTML = toastHtml;
 
     if (this.options.position.vertical === "top") {
-      this.toastWrapperElement.insertAdjacentElement("afterbegin", toast); //prepend toast element
+      this.toastWrapperElement.insertAdjacentElement("afterbegin", toastElement); //prepend toast element
     } else {
-      this.toastWrapperElement.appendChild(toast); // Append the toast element
+      this.toastWrapperElement.appendChild(toastElement); // Append the toast element
     }
 
-    toast.timer = setTimeout(() => this.hide(toast), item.duration * 1000);
+    toastElement.timer = setTimeout(() => this.hide(toastElement), item.duration * 1000);
 
-    toast.querySelector(".toast-close").addEventListener("click", () => {
-      if (toast.timer) clearTimeout(toast.timer);
-      this.hide(toast);
+    toastElement.querySelector(".toast-close").addEventListener("click", () => {
+      if (toastElement.timer) clearTimeout(toastElement.timer);
+      this.hide(toastElement, true);
     });
   }
 
@@ -178,13 +181,25 @@ export default class Toast {
 
   /**
    * toast hide
-   * @param {*} toast
+   * @param {*} toastElement
    */
-  hide(toast) {
+  hide(toastElement, forceClose) {
+    let hideFlag = true;
+
+    if (!forceClose && this.options.hideCallback && this.options.hideCallback.call(this, toastElement) === false) {
+      hideFlag = false;
+    }
+
+    if (!hideFlag) return;
+
     this.viewItemCount -= 1;
-    toast.classList.add("hide");
-    if (toast.timeoutId) clearTimeout(toast.timeoutId);
-    setTimeout(() => this.toastWrapperElement.removeChild(toast), 500);
+
+    toastElement.classList.add("hide");
+
+    if (toastElement.timeoutId) clearTimeout(toastElement.timeoutId);
+    setTimeout(() => {
+      this.toastWrapperElement.removeChild(toastElement);
+    }, 500);
 
     if (this.options.keepInstance === false && this.viewItemCount < 1) {
       this.destroy();

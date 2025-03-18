@@ -54,7 +54,7 @@
     Daracl.toast.create({ items: ['top-center', '한글임 한글임 한글임 세종대왕'], style: 'primary', enableProgress: true, duration: 2, position: { vertical: 'top', horizontal: 'center' } })
     toastObj = Daracl.toast.create({ items: [{ text: 'top-right', style: 'warning' }, { text: 'test', style: 'primary' }], keepInstance: true, style: 'secondary', enableProgress: true, duration: 3, position: { vertical: 'top', horizontal: 'right' } })
 
-    Daracl.toast.create({ items: ['middle-left', 'test'], style: 'warning', duration: 3, position: { vertical: 'middle', horizontal: 'left' } })
+    Daracl.toast.create({ items: ['middle-left', 'test'], style: 'warning', duration: 3, position: { vertical: 'middle', horizontal: 'left' }, hideCallback: (element) => { console.log('hide element', this, element); return; } })
     Daracl.toast.create({ items: [{ text: 'middle-center' }, 'test'], style: 'success', duration: 4, position: { vertical: 'middle', horizontal: 'center' } })
     Daracl.toast.create({ items: ['middle-right', 'test'], style: 'info', duration: 5, position: { vertical: 'middle', horizontal: 'right' } })
 

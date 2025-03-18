@@ -55,6 +55,8 @@ Daracl.toast.create({ items: [{ text: 'awseawefawefawefaweff <br/>asdfwef', titl
 | textColor |  글자 색 |  '#000000' | |
 | enableProgress |  프로그래스 바 사용여부 |  true |  |
 | keepInstance |  show 가 끝나도 toast 객체를 유지 <br> toast 객체 하나 생성해서 계속 사용할 경우 사용 |  false | 
+| hideCallback |  hide after callback 함수 |  false |  retrun 값이 false 일경우 toast가 안닫힘
+  
   
 
 
